@@ -4,11 +4,11 @@ import "container/list"
 
 // LRU缓存
 type Cache struct {
-	capacity  int64                    // 允许使用的最大缓存容量
-	length    int64                    // 当前已使用的缓存容量
-	ll        *list.List               // 一个双向链表，用于存实际值和维护最近最少使用的顺序
-	cache     map[string]*list.Element // 键是字符串，值是双向链表中对应节点的指针
-	OnEvicted func(key string, value Value)
+	capacity  int64                         // 允许使用的最大缓存容量，0代表无限制
+	length    int64                         // 当前已使用的缓存容量
+	ll        *list.List                    // 一个双向链表，用于存实际值和维护最近最少使用的顺序
+	cache     map[string]*list.Element      // 键是字符串，值是双向链表中对应节点的指针
+	OnEvicted func(key string, value Value) // 某条记录被移除的时候的回调函数
 }
 
 // 键值对 entry 是双向链表节点的数据类型，在链表中冗余每个值对应的 key 的目的在于，
