@@ -1,4 +1,4 @@
-package evict
+package lru
 
 import (
 	"reflect"
